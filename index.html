@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swift Clean | Professional Cleaning Services</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#6B5B95',
+                            darkPurple: '#4A3B6B',
+                            lavender: '#E8E5F2',
+                            lightLavender: '#F4F2F9',
+                            sage: '#88B04B',
+                            sageLight: '#EBF2E6',
+                            charcoal: '#2D2B32'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .clip-slant {
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+        }
+        /* Custom image slider handles and styles */
+        .img-slider-container {
+            position: relative;
+            user-select: none;
+            overflow: hidden;
+        }
+        .img-slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-purple selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-darkPurple to-brand-purple flex items-center justify-center text-white shadow-md shadow-brand-purple/20 group-hover:scale-105 transition-transform">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1">
+                            <span class="font-bold text-2xl tracking-tight text-slate-900 font-serif italic">Swift</span>
+                            <span class="font-extrabold text-xl tracking-wider text-brand-purple">CLEAN</span>
+                        </div>
+                        <p class="text-[10px] tracking-widest text-slate-400 font-medium uppercase -mt-1">Effortless & Flawless</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sm font-semibold text-slate-600 hover:text-brand-purple transition-colors">About Us</a>
+                    <a href="#services" class="text-sm font-semibold text-slate-600 hover:text-brand-purple transition-colors">Services</a>
+                    <a href="#transformation" class="text-sm font-semibold text-slate-600 hover:text-brand-purple transition-colors">Before & After</a>
+                    <a href="#calculator" class="text-sm font-semibold text-slate-600 hover:text-brand-purple transition-colors">Pricing Calculator</a>
+                    <a href="#reviews" class="text-sm font-semibold text-slate-600 hover:text-brand-purple transition-colors">Reviews</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="tel:18005557943" class="hidden xl:flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-brand-purple">
+                        <div class="w-8 h-8 rounded-full bg-brand-lavender flex items-center justify-center text-brand-purple">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                        </div>
+                        (800) 555-SWIFT
+                    </a>
+                    <a href="#booking" class="px-5 py-2.5 rounded-full bg-brand-darkPurple hover:bg-brand-purple text-white text-sm font-semibold shadow-lg shadow-brand-purple/20 hover:shadow-xl hover:shadow-brand-purple/30 transition-all duration-300">
+                        Book Service
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-purple">About Us</a>
+            <a href="#services" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-purple">Services</a>
+            <a href="#transformation" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-purple">Before & After</a>
+            <a href="#calculator" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-purple">Instant Quote</a>
+            <a href="#reviews" class="block py-2 text-base font-semibold text-slate-700 hover:text-brand-purple">Reviews</a>
+            <a href="#booking" class="block w-full text-center py-3 rounded-xl bg-brand-darkPurple text-white font-semibold mt-4">Book Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section with Brand Banner Theme -->
+    <section class="relative bg-gradient-to-b from-brand-lightLavender/60 via-white to-slate-50 pt-12 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-lavender text-brand-darkPurple text-xs font-bold tracking-wide uppercase mb-4">
+                    <i data-lucide="sparkle" class="w-3.5 h-3.5 text-brand-purple"></i> Top-Rated Professional Cleaners
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                    Transforming Spaces with <span class="font-serif italic font-normal text-brand-purple">Effortless</span> Perfection
+                </h1>
+                <p class="mt-4 text-lg text-slate-600 leading-relaxed">
+                    Experience sparkling clean spaces without lifting a finger. Professional residential, commercial, Airbnb, and move-in/out deep cleaning services.
+                </p>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a href="#booking" class="px-8 py-4 rounded-full bg-brand-darkPurple hover:bg-brand-purple text-white font-bold shadow-xl shadow-brand-purple/25 hover:scale-105 transition-all">
+                        Get Instant Free Quote
+                    </a>
+                    <a href="#transformation" class="px-8 py-4 rounded-full bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold shadow-sm transition-all flex items-center gap-2">
+                        <i data-lucide="eye" class="w-5 h-5 text-brand-purple"></i> See Transformations
+                    </a>
+                </div>
+            </div>
+
+            <!-- Banner Visual Mockup Container -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80" alt="Clean Home Interior" class="w-full h-[380px] sm:h-[480px] object-cover opacity-90 transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-between p-6 sm:p-10">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-white/90 backdrop-blur-md text-brand-darkPurple px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase shadow-md">
+                            Flawless Results Guaranteed
+                        </span>
+                        <div class="flex items-center gap-1 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-amber-500 font-bold text-xs shadow-md">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-400"></i>
+                            <span class="text-slate-800">4.9 / 5.0 (500+ Reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-2xl max-w-2xl mx-auto text-center border border-white/50">
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Professional Cleaning Services</h3>
+                        <p class="text-sm text-slate-600 mb-4">Fast, reliable & eco-friendly cleaning tailored to your precise schedule.</p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-semibold text-slate-700">
+                            <div class="bg-brand-lightLavender/80 p-2.5 rounded-xl flex items-center justify-center gap-1.5">
+                                <i data-lucide="home" class="w-4 h-4 text-brand-purple"></i> Residential
+                            </div>
+                            <div class="bg-brand-lightLavender/80 p-2.5 rounded-xl flex items-center justify-center gap-1.5">
+                                <i data-lucide="key" class="w-4 h-4 text-brand-purple"></i> Airbnb Turnovers
+                            </div>
+                            <div class="bg-brand-lightLavender/80 p-2.5 rounded-xl flex items-center justify-center gap-1.5">
+                                <i data-lucide="building-2" class="w-4 h-4 text-brand-purple"></i> Commercial
+                            </div>
+                            <div class="bg-brand-lightLavender/80 p-2.5 rounded-xl flex items-center justify-center gap-1.5">
+                                <i data-lucide="truck" class="w-4 h-4 text-brand-purple"></i> Move In/Out
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Before / After Section -->
+    <section id="transformation" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                    See the <span class="text-brand-purple font-serif italic">Difference</span>
+                </h2>
+                <p class="mt-3 text-slate-600">
+                    Drag the slider below to reveal how our Swift Clean experts turn cluttered, dusty spaces into pristine, inviting sanctuaries.
+                </p>
+            </div>
+
+            <!-- Interactive Image Comparison Slider -->
+            <div class="max-w-4xl mx-auto">
+                <div id="before-after-slider" class="img-slider-container w-full h-[320px] sm:h-[480px] rounded-3xl shadow-2xl overflow-hidden cursor-ew-resize border-4 border-white relative">
+                    <!-- Clean Image (AFTER - Base layer) -->
+                    <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80" alt="Clean Living Room After" class="absolute inset-0 w-full h-full object-cover">
+                    <span class="absolute top-6 right-6 bg-brand-darkPurple/90 text-white font-bold text-xs px-4 py-2 rounded-full uppercase tracking-wider backdrop-blur-sm z-10 shadow-md">
+                        AFTER
+                    </span>
+
+                    <!-- Messy Image (BEFORE - Overlay layer) -->
+                    <div id="overlay-img" class="img-slider-overlay w-1/2 z-10">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80" alt="Messy Room Before" class="absolute inset-0 w-full h-full object-cover max-w-none" id="before-img-element">
+                        <span class="absolute top-6 left-6 bg-slate-900/80 text-white font-bold text-xs px-4 py-2 rounded-full uppercase tracking-wider backdrop-blur-sm shadow-md">
+                            BEFORE
+                        </span>
+                    </div>
+
+                    <!-- Slider Divider Handle -->
+                    <div id="slider-handle" class="absolute top-0 bottom-0 left-1/2 w-1 bg-white z-20 cursor-ew-resize shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                        <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-10 h-10 rounded-full bg-white text-brand-darkPurple shadow-xl flex items-center justify-center border-2 border-brand-purple">
+                            <i data-lucide="chevrons-left-right" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center text-xs text-slate-400 mt-3 px-2">
+                    <span>👈 Slide Left for After</span>
+                    <span>Slide Right for Before 👉</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold text-brand-purple uppercase tracking-widest bg-brand-lavender px-3 py-1 rounded-full">Our Expertise</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Tailored Cleaning Solutions</h2>
+                <p class="mt-3 text-slate-600">Whether it’s routine upkeep or intensive deep cleaning, we have specialized teams ready to elevate your space.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Residential Cleaning -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-lavender text-brand-darkPurple flex items-center justify-center mb-6 group-hover:bg-brand-purple group-hover:text-white transition-colors">
+                            <i data-lucide="home" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Residential Cleaning</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Regular weekly, bi-weekly, or monthly home maintenance. Dusting, sanitizing, vacuuming, and kitchen refresh.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 pt-4 border-t border-slate-100">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Dusting & Deep Sanitization</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Kitchen & Bathroom Scrub</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Custom Floor Care</li>
+                    </ul>
+                </div>
+
+                <!-- Airbnb Turnovers -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-lavender text-brand-darkPurple flex items-center justify-center mb-6 group-hover:bg-brand-purple group-hover:text-white transition-colors">
+                            <i data-lucide="key-round" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Airbnb Turnovers</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Fast, reliable guest turnover service. Fresh linens, restocked amenities, and pristine check-in readiness for 5-star reviews.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 pt-4 border-t border-slate-100">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Linen Swap & Washing</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Guest Amenity Restock</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Same-Day Fast Response</li>
+                    </ul>
+                </div>
+
+                <!-- Commercial Cleaning -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-lavender text-brand-darkPurple flex items-center justify-center mb-6 group-hover:bg-brand-purple group-hover:text-white transition-colors">
+                            <i data-lucide="building-2" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Commercial Cleaning</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Keep your business, office, or retail storefront pristine. Scheduled after-hours cleaning tailored to your working schedule.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 pt-4 border-t border-slate-100">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Office & Desk Disinfection</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Common Area Sanitizing</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Trash Removal & Restrooms</li>
+                    </ul>
+                </div>
+
+                <!-- Move In / Move Out -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-lavender text-brand-darkPurple flex items-center justify-center mb-6 group-hover:bg-brand-purple group-hover:text-white transition-colors">
+                            <i data-lucide="truck" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Move In / Out</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Thorough top-to-bottom deep clean to ensure deposit return or prepare your new dream home for immediate move-in.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 pt-4 border-t border-slate-100">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Inside Cabinet & Appliance Cleaning</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Baseboard & Window Sill Scrub</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-sage"></i> Deposit Guarantee Clean</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instant Quote Calculator -->
+    <section id="calculator" class="py-20 bg-gradient-to-br from-brand-darkPurple via-slate-900 to-brand-charcoal text-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold text-brand-lavender uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full backdrop-blur-md">Instant Estimator</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Calculate Your Cleaning Cost</h2>
+                <p class="mt-2 text-slate-300">Get an instant transparent estimate in seconds with no hidden fees.</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <!-- Calculator Inputs -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <!-- Service Type -->
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-slate-200">1. Select Service Type</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <button type="button" onclick="selectService('residential', 1.0)" class="calc-type-btn p-3 rounded-xl border border-white/20 text-xs font-semibold hover:bg-white/20 transition-all text-center active-calc" id="btn-res">
+                                    Residential
+                                </button>
+                                <button type="button" onclick="selectService('airbnb', 1.2)" class="calc-type-btn p-3 rounded-xl border border-white/20 text-xs font-semibold hover:bg-white/20 transition-all text-center" id="btn-air">
+                                    Airbnb
+                                </button>
+                                <button type="button" onclick="selectService('commercial', 1.15)" class="calc-type-btn p-3 rounded-xl border border-white/20 text-xs font-semibold hover:bg-white/20 transition-all text-center" id="btn-com">
+                                    Commercial
+                                </button>
+                                <button type="button" onclick="selectService('moveinout', 1.4)" class="calc-type-btn p-3 rounded-xl border border-white/20 text-xs font-semibold hover:bg-white/20 transition-all text-center" id="btn-mov">
+                                    Move In/Out
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Bedrooms & Bathrooms -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-2">
+                                    <span>Bedrooms / Rooms</span>
+                                    <span id="bedrooms-val" class="text-brand-sage font-bold">2 Rooms</span>
+                                </div>
+                                <input type="range" id="calc-bedrooms" min="1" max="6" value="2" class="w-full accent-brand-sage cursor-pointer" oninput="calculateQuote()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-2">
+                                    <span>Bathrooms</span>
+                                    <span id="bathrooms-val" class="text-brand-sage font-bold">2 Baths</span>
+                                </div>
+                                <input type="range" id="calc-bathrooms" min="1" max="5" value="2" class="w-full accent-brand-sage cursor-pointer" oninput="calculateQuote()">
+                            </div>
+                        </div>
+
+                        <!-- Add-ons -->
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-slate-200">Optional Add-ons</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs cursor-pointer hover:bg-white/10">
+                                    <input type="checkbox" id="addon-fridge" onchange="calculateQuote()" class="rounded accent-brand-purple"> Inside Fridge (+ $35)
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs cursor-pointer hover:bg-white/10">
+                                    <input type="checkbox" id="addon-oven" onchange="calculateQuote()" class="rounded accent-brand-purple"> Inside Oven (+ $40)
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs cursor-pointer hover:bg-white/10">
+                                    <input type="checkbox" id="addon-windows" onchange="calculateQuote()" class="rounded accent-brand-purple"> Windows (+ $50)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estimated Price Box -->
+                    <div class="bg-white rounded-2xl p-6 text-slate-900 text-center shadow-xl flex flex-col justify-center items-center h-full">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Estimated Total</span>
+                        <div class="text-5xl font-extrabold text-brand-darkPurple my-2 flex items-baseline justify-center">
+                            $<span id="quote-price">149</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-6">Final quote confirmed after site verification.</p>
+                        <a href="#booking" onclick="prefillBooking()" class="w-full py-3 px-4 rounded-xl bg-brand-darkPurple hover:bg-brand-purple text-white font-bold text-sm shadow-lg transition-all">
+                            Lock In This Estimate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold text-brand-purple uppercase tracking-widest bg-brand-lavender px-3 py-1 rounded-full">Customer Stories</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Loved by Local Homeowners</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm italic mb-6 leading-relaxed">
+                            "Swift Clean did a move-out clean for my 3-bedroom home. The landlord was amazed—we got 100% of our deposit back without a single question asked!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-lavender text-brand-darkPurple flex items-center justify-center font-bold text-sm">
+                            EM
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900">Emily Martinez</h4>
+                            <p class="text-xs text-slate-500">Residential Client</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm italic mb-6 leading-relaxed">
+                            "I run 4 Airbnb rentals and Swift Clean handles all turnovers. Always punctual, super detail-oriented, and my guests always leave 5 stars for cleanliness."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-lavender text-brand-darkPurple flex items-center justify-center font-bold text-sm">
+                            DR
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900">David Reynolds</h4>
+                            <p class="text-xs text-slate-500">Superhost & Property Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm italic mb-6 leading-relaxed">
+                            "Fast, polite, and very high standard of work. Coming home after a long day at work to a house that smells fresh and lavender clean is the best feeling!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-lavender text-brand-darkPurple flex items-center justify-center font-bold text-sm">
+                            SL
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900">Sarah Jenkins</h4>
+                            <p class="text-xs text-slate-500">Bi-Weekly Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking & Contact Form -->
+    <section id="booking" class="py-20 bg-brand-lightLavender/50 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-slate-100">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Book Your Cleaning Service</h2>
+                    <p class="text-slate-600 mt-2 text-sm">Fill out the quick form below and our team will get in touch to confirm your appointment details.</p>
+                </div>
+
+                <form id="booking-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Full Name *</label>
+                            <input type="text" required placeholder="Jane Doe" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-purple/50 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Phone Number *</label>
+                            <input type="tel" required placeholder="(555) 000-0000" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-purple/50 text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Email Address *</label>
+                            <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-purple/50 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Service Type</label>
+                            <select id="booking-service-select" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-purple/50 text-sm bg-white">
+                                <option value="residential">Residential Cleaning</option>
+                                <option value="airbnb">Airbnb Turnover</option>
+                                <option value="commercial">Commercial Cleaning</option>
+                                <option value="moveinout">Move In / Move Out Deep Clean</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Special Notes or Requirements</label>
+                        <textarea rows="3" placeholder="Tell us about your space, preferred date/time, or special instructions..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-purple/50 text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-brand-darkPurple hover:bg-brand-purple text-white font-bold text-base shadow-xl shadow-brand-purple/20 transition-all">
+                        Submit Booking Request
+                    </button>
+                </form>
+
+                <!-- Success Confirmation Message -->
+                <div id="booking-success" class="hidden text-center py-8">
+                    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Request Received!</h3>
+                    <p class="text-slate-600 text-sm max-w-md mx-auto">
+                        Thank you for reaching out to Swift Clean. A representative will contact you shortly to confirm your booking date and pricing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-2xl tracking-tight text-white font-serif italic">Swift</span>
+                        <span class="font-extrabold text-xl tracking-wider text-brand-purple">CLEAN</span>
+                    </div>
+                    <p class="text-xs leading-relaxed">
+                        Effortless clean, fast & flawless. Providing premium professional residential, commercial, and turnover cleaning services.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#transformation" class="hover:text-white transition-colors">Before & After</a></li>
+                        <li><a href="#calculator" class="hover:text-white transition-colors">Pricing Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services List -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Services</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li>Residential Home Clean</li>
+                        <li>Airbnb Turnover</li>
+                        <li>Commercial & Office</li>
+                        <li>Move In / Out Deep Clean</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Contact Us</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-brand-purple"></i> (800) 555-SWIFT</li>
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-brand-purple"></i> info@swiftclean.com</li>
+                        <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-brand-purple"></i> Serving Metro Area</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 Swift Clean Professional Cleaning Services. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-400">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Before & After Image Comparison Slider Logic
+        const sliderContainer = document.getElementById('before-after-slider');
+        const overlayImg = document.getElementById('overlay-img');
+        const sliderHandle = document.getElementById('slider-handle');
+        const beforeImgElement = document.getElementById('before-img-element');
+
+        if (sliderContainer && overlayImg && sliderHandle && beforeImgElement) {
+            let isDragging = false;
+
+            const updateSlider = (x) => {
+                const rect = sliderContainer.getBoundingClientRect();
+                let position = x - rect.left;
+                if (position < 0) position = 0;
+                if (position > rect.width) position = rect.width;
+                const percentage = (position / rect.width) * 100;
+
+                overlayImg.style.width = `${percentage}%`;
+                sliderHandle.style.left = `${percentage}%`;
+                beforeImgElement.style.width = `${rect.width}px`;
+            };
+
+            const resizeHandler = () => {
+                const rect = sliderContainer.getBoundingClientRect();
+                beforeImgElement.style.width = `${rect.width}px`;
+            };
+
+            window.addEventListener('resize', resizeHandler);
+            resizeHandler();
+
+            sliderContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Touch events for mobile responsiveness
+            sliderContainer.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                updateSlider(e.touches[0].clientX);
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.touches[0].clientX);
+            });
+
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        }
+
+        // Instant Quote Estimator Calculation
+        let selectedServiceMultiplier = 1.0;
+
+        function selectService(type, multiplier) {
+            selectedServiceMultiplier = multiplier;
+            document.querySelectorAll('.calc-type-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-purple', 'border-brand-purple', 'text-white');
+                btn.classList.add('border-white/20');
+            });
+
+            const activeBtnMap = {
+                'residential': 'btn-res',
+                'airbnb': 'btn-air',
+                'commercial': 'btn-com',
+                'moveinout': 'btn-mov'
+            };
+            const activeBtn = document.getElementById(activeBtnMap[type]);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-brand-purple', 'border-brand-purple', 'text-white');
+            }
+
+            calculateQuote();
+        }
+
+        function calculateQuote() {
+            const bedrooms = parseInt(document.getElementById('calc-bedrooms').value) || 1;
+            const bathrooms = parseInt(document.getElementById('calc-bathrooms').value) || 1;
+            
+            document.getElementById('bedrooms-val').innerText = `${bedrooms} Room${bedrooms > 1 ? 's' : ''}`;
+            document.getElementById('bathrooms-val').innerText = `${bathrooms} Bath${bathrooms > 1 ? 's' : ''}`;
+
+            let baseRate = 80;
+            let roomCost = bedrooms * 25;
+            let bathCost = bathrooms * 20;
+
+            let addOns = 0;
+            if (document.getElementById('addon-fridge').checked) addOns += 35;
+            if (document.getElementById('addon-oven').checked) addOns += 40;
+            if (document.getElementById('addon-windows').checked) addOns += 50;
+
+            let total = Math.round((baseRate + roomCost + bathCost + addOns) * selectedServiceMultiplier);
+            document.getElementById('quote-price').innerText = total;
+        }
+
+        // Initialize calculator highlight on load
+        selectService('residential', 1.0);
+
+        function prefillBooking() {
+            const serviceSelect = document.getElementById('booking-service-select');
+            if (serviceSelect) {
+                if (selectedServiceMultiplier === 1.2) serviceSelect.value = 'airbnb';
+                else if (selectedServiceMultiplier === 1.15) serviceSelect.value = 'commercial';
+                else if (selectedServiceMultiplier === 1.4) serviceSelect.value = 'moveinout';
+                else serviceSelect.value = 'residential';
+            }
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('booking-form');
+            const successMsg = document.getElementById('booking-success');
+            if (form && successMsg) {
+                form.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
